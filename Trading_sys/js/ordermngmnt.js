@@ -26,11 +26,14 @@ function setPairFunction(){
 }
 
 var interval = setInterval(()=>{ 
-
-	fetch(baseURL +'price?typeOrd=ask&crypto='+pair[1]+'&currency='+pair[0]).then((response)=>{
+	let query = baseURL +'price?crypto='+pair[1]+'&currency='+pair[0];
+	console.log(query);
+	fetch(query).then((response)=>{
 		return response.json();				
 	}).then((respJson)=>{
-		ask.innerHTML = respJson.EUR;		
+		ask.innerHTML = respJson.result.ask;
+		bid.innerHTML = respJson.result.bid;
+		latest.innerHTML = respJson.result.latest;		
 	});
 	/*fetch(baseURL + 'price?typeOrd=bid&crypto='+pair[1]+'&currency='+pair[0]).then((response)=>{
 		return response.json();				
@@ -40,7 +43,7 @@ var interval = setInterval(()=>{
 	fetch(baseURL + 'price?typeOrd=latest&crypto='+pair[1]+'&currency='+pair[0]).then((response)=>{
 		latest.innerHTML = ;	
 	});*/
-}, 60000);
+}, 5000);
 
 function myStopFunction() {	
     clearInterval(interval);
