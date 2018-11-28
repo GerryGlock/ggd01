@@ -17,7 +17,6 @@ form.addEventListener('submit', (event)=>{
 });
 
 var pair = ["EUR","ETH"];
-
 function setPairFunction(){
 	let pairSelection = selectPair.options[selectPair.selectedIndex].value;	
 	pair=pairSelection.split("-");
@@ -25,27 +24,35 @@ function setPairFunction(){
 	console.log(pairTitle.innerHTML);
 }
 
-var interval = setInterval(()=>{ 
-	let query = baseURL +'price?crypto='+pair[1]+'&currency='+pair[0];
-	console.log(query);
-	fetch(query).then((response)=>{
-		return response.json();				
-	}).then((respJson)=>{
-		ask.innerHTML = respJson.result.ask;
-		bid.innerHTML = respJson.result.bid;
-		latest.innerHTML = respJson.result.latest;		
-	});
-	/*fetch(baseURL + 'price?typeOrd=bid&crypto='+pair[1]+'&currency='+pair[0]).then((response)=>{
-		return response.json();				
-	}).then((respJson)=>{
-		bid.innerHTML = respJson.EUR;		
-	});
-	fetch(baseURL + 'price?typeOrd=latest&crypto='+pair[1]+'&currency='+pair[0]).then((response)=>{
-		latest.innerHTML = ;	
-	});*/
-}, 5000);
+var interval = 0;
+function setResetInterval(bool){
 
-function myStopFunction() {	
-    clearInterval(interval);
-    console.log("interval cleared");
+	if(bool){
+		interval =	setInterval(()=>{ 
+			console.log(pair[1]+" "+pair[0]);
+			let query = baseURL +'price?crypto='+pair[1]+'&currency='+pair[0];
+			console.log(query);
+			fetch(query).then((response)=>{
+				return response.json();				
+			}).then((respJson)=>{
+				console.log(respJson);
+				ask.innerHTML = respJson.result.Ask;
+				bid.innerHTML = respJson.result.Bid;
+				latest.innerHTML = respJson.result.Last;		
+			});
+			/*fetch(baseURL + 'price?typeOrd=bid&crypto='+pair[1]+'&currency='+pair[0]).then((response)=>{
+				return response.json();				
+			}).then((respJson)=>{
+				bid.innerHTML = respJson.EUR;		
+			});
+			fetch(baseURL + 'price?typeOrd=latest&crypto='+pair[1]+'&currency='+pair[0]).then((response)=>{
+				latest.innerHTML = ;	
+			});*/
+		}, 5000);
+	}else{
+		clearInterval(interval)
+	}
 }
+
+setResetInterval(true);
+

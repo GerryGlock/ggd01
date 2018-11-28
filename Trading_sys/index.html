@@ -67,7 +67,8 @@ tr:nth-child(even) {
     	<td id="latest_price"></td>
   	</tr>
   	<br/>
-  	<button type="button" id="stopAPIcallButton" onclick="myStopFunction()">STOP API calls</button>
+  	<button type="button" id="stopAPIcallButton" onclick="setResetInterval(false)">STOP API calls</button>
+  	<button type="button" id="startAPIcallButton" onclick="setResetInterval(true)">START API calls</button>
   	
   	<select name="pair" id="pairSelect" onchange="setPairFunction()">
 		<option value="EUR-ETH">EUR-ETH</option>
