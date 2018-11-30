@@ -10,6 +10,7 @@ var baseURL = 'http://localhost:8080/';
 var latest = document.querySelector("#latest_price");
 var pairTitle = document.querySelector("#pairTitle");
 var selectPair = document.querySelector("#pairSelect");
+var buySellSelector = document.querySelector(#order_type);
 
 form.addEventListener('submit', (event)=>{
 	  	alert( "Handler for .submit() called." );  		
@@ -25,6 +26,7 @@ function setPairFunction(){
 }
 
 var interval = 0;
+
 function setResetInterval(bool){
 
 	if(bool){
@@ -39,15 +41,7 @@ function setResetInterval(bool){
 				ask.innerHTML = respJson.result.Ask;
 				bid.innerHTML = respJson.result.Bid;
 				latest.innerHTML = respJson.result.Last;		
-			});
-			/*fetch(baseURL + 'price?typeOrd=bid&crypto='+pair[1]+'&currency='+pair[0]).then((response)=>{
-				return response.json();				
-			}).then((respJson)=>{
-				bid.innerHTML = respJson.EUR;		
-			});
-			fetch(baseURL + 'price?typeOrd=latest&crypto='+pair[1]+'&currency='+pair[0]).then((response)=>{
-				latest.innerHTML = ;	
-			});*/
+			});			
 		}, 5000);
 	}else{
 		clearInterval(interval)
@@ -55,4 +49,6 @@ function setResetInterval(bool){
 }
 
 setResetInterval(true);
+
+
 

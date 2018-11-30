@@ -76,6 +76,11 @@ title{
 	font: 12px tahoma;
 } 
 
+#prices_table{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 70%;
+}
 /* Preloader */
 
 #preloader {

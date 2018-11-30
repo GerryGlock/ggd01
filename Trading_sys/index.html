@@ -44,18 +44,29 @@
 </style>
 <body>
 	<meta charset="utf-8">
-	<h2>Order placement</h2>
 
-	<form action="#" id="order_form" onsubmit="return false;">Enter the order<br>	
-	<label for="EUR">Eur</label>		
-	<input type="number" name="EUR">
-	<input type="submit" value="Submit">
-	</form>
+	<div>
+		<h2>Order placement</h2>
+	</div>
+	<div>
+		<select name="order_type">
+			<option value="buy">Buy</option>
+			<option value="sell">Sell</option>
+		</select>	
+	</div>
+	
+	<br>
 
-	<select name="order_type">
-		<option value="buy">Buy</option>
-		<option value="sell">Sell</option>
-	</select>
+	<div id="formDiv">
+		<form action="#" id="order_form" onsubmit="return false;">Enter the order<br>	
+				<label for="EUR">Eur</label>			
+			<input type="number" name="EUR">
+			<input type="submit" value="Submit">
+		</form>	
+	</div>
+	<br>
+
+	
 	<select name="order_type2">
 		<option value="limit">Limit</option>
 		<option value="condition">Condition</option>
@@ -76,6 +87,17 @@
 	</select>
 	<br>
 	
+	
+  	<button type="button" id="stopAPIcallButton" onclick="setResetInterval(false)">STOP API calls</button>
+  	<button type="button" id="startAPIcallButton" onclick="setResetInterval(true)">START API calls</button>
+  	
+  	<select name="pair" id="pairSelect" onchange="setPairFunction()">
+		<option value="EUR-ETH">EUR-ETH</option>
+		<option value="EUR-BTC">EUR-BTC</option>		
+	</select>
+	<br>
+	<label id="pairTitle">Showing EUR-ETH</label> 
+
 	<table id="prices_table">
 	<tr>
 		<th>Ask</th>
@@ -88,14 +110,6 @@
     	<td id="latest_price"></td>
   	</tr>
   	<br/>
-  	<button type="button" id="stopAPIcallButton" onclick="setResetInterval(false)">STOP API calls</button>
-  	<button type="button" id="startAPIcallButton" onclick="setResetInterval(true)">START API calls</button>
-  	
-  	<select name="pair" id="pairSelect" onchange="setPairFunction()">
-		<option value="EUR-ETH">EUR-ETH</option>
-		<option value="EUR-BTC">EUR-BTC</option>		
-	</select>
-	<label id="pairTitle">Showing EUR-ETH</label> 
 
 </body>
 <script type="text/javascript" src="js/ordermngmnt.js"></script>
